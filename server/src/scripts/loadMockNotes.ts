@@ -1,9 +1,10 @@
-import mongoose, { Document } from "mongoose";
+import mongoose from "mongoose";
 import "dotenv/config";
-import { NoteModel } from "../server/models/note.js";
-import { MockNotes } from "./mockNotes.js";
+import { NoteModel } from "../models/note.js";
+import { MockNotes } from "../mocks/mockNotes.js";
 
 const createMockNotes = async () => {
+  await mongoose.connect(process.env.MONGODB_URI!);
   try {
     await NoteModel.create(MockNotes);
     console.log("Mock notes created ✨");
@@ -14,6 +15,4 @@ const createMockNotes = async () => {
   }
 };
 
-mongoose.connect(process.env.MONGODB_URI).then(() => {
-  createMockNotes();
-});
+createMockNotes();

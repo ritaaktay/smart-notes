@@ -1,5 +1,5 @@
 import express from "express";
-import { notesRoute, usersRoute, openaiRoute } from "./routes/index.js";
+import { notesRoute, usersRoute, AIRoute } from "./routes/index.js";
 import "dotenv/config";
 import mongoose from "mongoose";
 
@@ -9,7 +9,7 @@ app.use(express.json());
 
 app.use("/notes", notesRoute);
 app.use("/users", usersRoute);
-app.use("/ai", openaiRoute);
+app.use("/ai", AIRoute);
 
 mongoose
   .connect(process.env.MONGODB_URI)
