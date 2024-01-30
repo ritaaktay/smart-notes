@@ -1,3 +1,6 @@
 {
-  "dependencies": {}
+  "dependencies": {},
+  "scripts": {
+    "start:server": "cd server && yarn start"
+  }
 }

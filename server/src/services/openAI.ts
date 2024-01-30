@@ -1,6 +1,7 @@
 import AI from "openai";
+import { AIService } from "../types/ai.types.js";
 
-class OpenAIService {
+class OpenAIService implements AIService {
   AI: AI;
 
   constructor() {
@@ -12,7 +13,7 @@ class OpenAIService {
         messages: [{ role: "system", content: prompt }],
         model: "gpt-4-0613",
       });
-      return completion.choices;
+      return completion.choices[0].message.content;
     } catch (e) {
       throw new Error(e);
     }

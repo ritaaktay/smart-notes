@@ -1,5 +1,5 @@
 import express from "express";
-import { notesRoute, usersRoute, AIRoute } from "./routes/index.js";
+import { notesRoute, usersRoute, aiRoute } from "./routes/index.js";
 import { green } from "./utils/green.js";
 import "dotenv/config";
 import mongoose from "mongoose";
@@ -10,7 +10,7 @@ app.use(express.json());
 
 app.use("/notes", notesRoute);
 app.use("/users", usersRoute);
-app.use("/ai", AIRoute);
+app.use("/ai", aiRoute);
 
 const PORT = process.env.PORT || 8000;
 

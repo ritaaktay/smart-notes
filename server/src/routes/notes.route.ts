@@ -1,15 +1,15 @@
 import express from "express";
-import { NotesController } from "../controllers/notes.js";
+import notesController from "../controllers/notes.controller.js";
 
 const router = express.Router();
 
-router.get("/", NotesController.All);
+router.get("/", notesController.getAllNotes);
 
 router.get("/:id", (req, res) => {
   res.send(`Get note ${req.params.id}`);
 });
 
-router.post("/", NotesController.Create);
+router.post("/", notesController.addNote);
 
 router.put("/:id", (req, res) => {
   res.send(`Update note ${req.params.id}`);

@@ -1,4 +1,4 @@
-import { Note } from "../types/models.types.js";
+import { Note } from "../types/note.types.js";
 
 export const MockNotes: Note[] = [
   {

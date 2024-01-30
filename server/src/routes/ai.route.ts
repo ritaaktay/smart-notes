@@ -1,9 +1,9 @@
 import express from "express";
 import "dotenv/config";
-import { AIController } from "../controllers/AI.js";
+import { aiController } from "../controllers/ai.controller.js";
 
 const router = express.Router();
 
-router.post("/summary", AIController.summarise);
+router.post("/summary", aiController.summarise);
 
 export default router;

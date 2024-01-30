@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { Note } from "../types/models.types.js";
+import { Note } from "../types/note.types.js";
 
 const noteSchema = new mongoose.Schema({
   title: {
@@ -17,4 +17,4 @@ const noteSchema = new mongoose.Schema({
   },
 });
 
-export const NoteModel = mongoose.model<Note>("Note", noteSchema);
+export default mongoose.model<Note>("Note", noteSchema);

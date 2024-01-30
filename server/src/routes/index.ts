@@ -1,3 +1,3 @@
-export { default as notesRoute } from "./notes.js";
-export { default as usersRoute } from "./users.js";
-export { default as AIRoute } from "./AI.js";
+export { default as notesRoute } from "./notes.route.js";
+export { default as usersRoute } from "./users.route.js";
+export { default as aiRoute } from "./ai.route.js";
