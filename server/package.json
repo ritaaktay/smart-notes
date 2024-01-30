@@ -1,5 +1,5 @@
 {
-  "name": "smart-notes",
+  "name": "smart-notes-server",
   "version": "1.0.0",
   "description": "A notetaking app that leverages AI",
   "type": "module",
