@@ -1,6 +1,6 @@
 import AI from "openai";
 
-class OpenAI {
+class OpenAIService {
   AI: AI;
 
   constructor() {
@@ -19,4 +19,4 @@ class OpenAI {
   };
 }
 
-export default new OpenAI();
+export default new OpenAIService();

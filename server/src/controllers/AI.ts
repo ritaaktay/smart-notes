@@ -1,12 +1,12 @@
 import OpenAI from "../services/openAI.js";
 import VertexAI from "../services/vertexAI.js";
-import { prompter } from "../services/prompter.js";
+import { prompter } from "../utils/prompter.js";
 
 import { MockNotes } from "../mocks/mockNotes.js";
 const notes = MockNotes.map((note) => JSON.stringify(note)).join("\n");
 
-const AI = OpenAI;
-// const AI = VertexAI
+// const AI = OpenAI;
+const AI = VertexAI;
 
 export const AIController = {
   summarise: async (req, res) => {

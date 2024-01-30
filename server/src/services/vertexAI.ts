@@ -1,22 +1,29 @@
-// import AI from "openai";
+import { VertexAI } from "@google-cloud/vertexai";
 
-class VertexAI {
-  // AI: AI;
+const projectID = "generated-wharf-412316";
+class VertexAIService {
+  AI: any;
 
   constructor() {
-    // this.AI = new AI({ apiKey: process.env.OPENAI_API_KEY });
+    const vertexAI = new VertexAI({
+      project: projectID,
+      location: "us-central1",
+    });
+    this.AI = vertexAI.preview.getGenerativeModel({
+      model: "gemini-pro",
+      generation_config: { max_output_tokens: 256 },
+    });
   }
   complete = async (prompt: string) => {
     try {
-      // const completion = await this.AI.chat.completions.create({
-      //   messages: [{ role: "system", content: prompt }],
-      //   model: "gpt-4-0613",
-      // });
-      // return completion.choices;
+      const completion = await this.AI.generateContent({
+        contents: [{ role: "user", parts: [{ text: prompt }] }],
+      });
+      return (await completion.response).candidates[0].content.parts[0].text;
     } catch (e) {
       throw new Error(e);
     }
   };
 }
 
-export default new VertexAI();
+export default new VertexAIService();
