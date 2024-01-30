@@ -8,9 +8,11 @@ const app = express();
 
 app.use(express.json());
 
-app.use("/notes", notesRoute);
-app.use("/users", usersRoute);
-app.use("/ai", aiRoute);
+app.use(express.static("build"));
+
+app.use(`/api/notes`, notesRoute);
+app.use(`/api/users`, usersRoute);
+app.use(`/api/ai`, aiRoute);
 
 const PORT = process.env.PORT || 8000;
 
