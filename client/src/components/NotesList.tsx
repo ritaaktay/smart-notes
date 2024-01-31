@@ -23,13 +23,15 @@ const NotesList = () => {
   return (
     <TableContainer component={Paper}>
       <Table aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Notes</TableCell>
-            <TableCell></TableCell>
-            <TableCell width="10%"></TableCell>
-          </TableRow>
-        </TableHead>
+        {notes.length > 0 && (
+          <TableHead>
+            <TableRow>
+              <TableCell>Notes</TableCell>
+              <TableCell></TableCell>
+              <TableCell width="10%"></TableCell>
+            </TableRow>
+          </TableHead>
+        )}
         <TableBody>
           {sortNotesByDate(notes).map((note: Note) => (
             <TableRow
