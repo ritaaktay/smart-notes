@@ -10,7 +10,7 @@
     "start": "ts-node ./src/server.ts",
     "build:watch": "rimraf dist && tsc --watch",
     "start:watch": "nodemon dist/server.js",
-    "load:mocks": "ts-node src/mocks/loadMockNotes.ts"
+    "load:mocks": "ts-node ./src/scripts/loadMockNotes.ts"
   },
   "dependencies": {
     "@google-cloud/vertexai": "^0.2.1",

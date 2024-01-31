@@ -1,11 +1,15 @@
-import Typography from "@mui/material/Typography";
+import { Typography } from "@mui/material";
+import NotesList from "../../components/NotesList";
 
-function Home() {
+const Home = () => {
   return (
-    <Typography variant="h4" align="center">
-      Welcome to Smart Notes, your talking notebook!
-    </Typography>
+    <>
+      <Typography variant="h4" align="center" pb={2}>
+        Welcome to Smart Notes, your talking notebook!
+      </Typography>
+      <NotesList />
+    </>
   );
-}
+};
 
 export default Home;
