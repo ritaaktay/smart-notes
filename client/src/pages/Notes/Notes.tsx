@@ -13,20 +13,21 @@ const Notes = () => {
 
   const getButton = (onClick: () => void, icon: ReactNode) => {
     return (
-      <Button variant="outlined" color="primary" onClick={onClick}>
-        {icon}
-      </Button>
+      <Box sx={{ mt: 4, display: "flex", flexDirection: "row-reverse" }}>
+        <Button variant="outlined" color="primary" onClick={onClick}>
+          {icon}
+        </Button>
+      </Box>
     );
   };
 
   return (
     <>
-      {edit ? <NoteForm /> : <NotesList />}
-      <Box sx={{ mt: 4, display: "flex", flexDirection: "row-reverse" }}>
-        {edit
-          ? getButton(handleEditDone, <ArrowForwardIcon />)
-          : getButton(handleEdit, <AddIcon />)}
-      </Box>
+      {edit ? (
+        <NoteForm button={getButton(handleEditDone, <ArrowForwardIcon />)} />
+      ) : (
+        <NotesList button={getButton(handleEdit, <AddIcon />)} />
+      )}
     </>
   );
 };
