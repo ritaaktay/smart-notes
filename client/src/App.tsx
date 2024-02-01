@@ -7,8 +7,8 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Container maxWidth="lg">
-        <Box sx={{ my: 8 }}>
-          <Typography variant="h4" align="center">
+        <Box sx={{ my: 8 }} display="flex" flexDirection="column">
+          <Typography variant="h4" align="center" sx={{ mb: 6 }}>
             Welcome to Smart Notes, your talking notebook!
           </Typography>
           <Notes />

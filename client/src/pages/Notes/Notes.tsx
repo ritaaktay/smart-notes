@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Button } from "@mui/material";
+import { ReactNode, useState } from "react";
+import { Button, Box } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import AddIcon from "@mui/icons-material/Add";
 import NoteForm from "../../components/NoteForm";
@@ -11,28 +11,22 @@ const Notes = () => {
   const handleEdit = () => setEdit(true);
   const handleEditDone = () => setEdit(false);
 
+  const getButton = (onClick: () => void, icon: ReactNode) => {
+    return (
+      <Button variant="outlined" color="primary" onClick={onClick}>
+        {icon}
+      </Button>
+    );
+  };
+
   return (
     <>
-      {edit ? (
-        <Button
-          variant="outlined"
-          color="primary"
-          sx={{ mb: 2 }}
-          onClick={handleEditDone}
-        >
-          <ArrowForwardIcon />
-        </Button>
-      ) : (
-        <Button
-          variant="outlined"
-          color="primary"
-          sx={{ mb: 2 }}
-          onClick={handleEdit}
-        >
-          <AddIcon />
-        </Button>
-      )}
       {edit ? <NoteForm /> : <NotesList />}
+      <Box sx={{ mt: 4, display: "flex", flexDirection: "row-reverse" }}>
+        {edit
+          ? getButton(handleEditDone, <ArrowForwardIcon />)
+          : getButton(handleEdit, <AddIcon />)}
+      </Box>
     </>
   );
 };
