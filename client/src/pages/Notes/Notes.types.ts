@@ -1,5 +1,4 @@
-import { ReactNode } from "react";
-
 export type NoteProps = {
-  button: ReactNode;
+  buttonBoxStyle: object;
+  toggleEdit: (t: boolean) => void;
 };

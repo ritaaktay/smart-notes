@@ -10,10 +10,13 @@ import {
   TableHead,
   TableRow,
   CircularProgress,
+  Button,
+  Box,
 } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
 import { NoteProps } from "../pages/Notes/Notes.types";
 
-const NotesList: React.FC<NoteProps> = ({ button }) => {
+const NotesList: React.FC<NoteProps> = ({ buttonBoxStyle, toggleEdit }) => {
   let [notes, setNotes] = useState([]);
   let [loading, setLoading] = useState(true);
 
@@ -67,7 +70,17 @@ const NotesList: React.FC<NoteProps> = ({ button }) => {
           </TableBody>
         </Table>
       </TableContainer>
-      {button}
+      <Box sx={buttonBoxStyle}>
+        <Button
+          variant="outlined"
+          color="primary"
+          onClick={() => {
+            toggleEdit(true);
+          }}
+        >
+          <AddIcon />
+        </Button>
+      </Box>
     </>
   );
 };

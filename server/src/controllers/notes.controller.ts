@@ -12,8 +12,9 @@ const notesController = {
   addNote: async (req, res) => {
     try {
       const id = await mongoDB.addNote({
-        title: req.body,
+        title: req.body.title,
         content: req.body.content,
+        user: "Test",
       });
       res.send(`✅ Added note: ${id}`);
     } catch (e) {

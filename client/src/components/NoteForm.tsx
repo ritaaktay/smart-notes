@@ -1,12 +1,32 @@
 import { useState } from "react";
-import { TextField } from "@mui/material";
+import { TextField, Button, Box, CircularProgress } from "@mui/material";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { NoteProps } from "../pages/Notes/Notes.types";
 
 type InputChangeEvent = React.ChangeEvent<HTMLInputElement>;
 
-const NoteForm: React.FC<NoteProps> = ({ button }) => {
+const NoteForm: React.FC<NoteProps> = ({ buttonBoxStyle, toggleEdit }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  let [loading, setLoading] = useState(false);
+
+  const saveNote = async ({
+    title,
+    content,
+  }: {
+    title: string;
+    content: string;
+  }) => {
+    setLoading(true);
+    // POST request to /api/notes
+    await fetch("/api/notes", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ title, content }),
+    }).then(() => toggleEdit(false));
+  };
 
   return (
     <>
@@ -26,7 +46,23 @@ const NoteForm: React.FC<NoteProps> = ({ button }) => {
         rows={19}
         onChange={(event: InputChangeEvent) => setContent(event.target.value)}
       />
-      {button}
+      <Box sx={buttonBoxStyle}>
+        <Button
+          variant="outlined"
+          color="primary"
+          onClick={() => {
+            saveNote({ title, content });
+          }}
+        >
+          {loading ? (
+            <Box sx={{ display: "flex" }}>
+              <CircularProgress size={24} />
+            </Box>
+          ) : (
+            <ArrowForwardIcon />
+          )}
+        </Button>
+      </Box>
     </>
   );
 };

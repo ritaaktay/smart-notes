@@ -9,8 +9,8 @@ class MongoDB {
     }
   };
 
-  addNote = async ({ title, content }) => {
-    const note = new Note({ title, content });
+  addNote = async ({ title, content, user }) => {
+    const note = new Note({ title, content, user });
     try {
       await note.save();
       return note.id;
