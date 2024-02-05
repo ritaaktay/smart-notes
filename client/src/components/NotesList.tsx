@@ -21,11 +21,12 @@ const NotesList: React.FC<NoteProps> = ({ buttonBoxStyle, toggleEdit }) => {
   let [loading, setLoading] = useState(true);
   let [error, setError] = useState(false);
 
+  // TODO can this be a custom data fetching hook with loading, data and error states?
   useEffect(() => {
     fetch("/api/notes").then(async (res) => {
       if (!res.ok) {
-        await res.json();
         setError(true);
+        console.log(await res.text());
       } else {
         const data = await res.json();
         setNotes(data);
