@@ -19,9 +19,10 @@ const PORT = process.env.PORT || 8000;
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => {
-    app.listen(PORT, () => {
-      console.log(green(`Smart Notes is listening on port: ${PORT}`));
-    });
     console.log(green("Connected to MongoDB Atlas"));
   })
   .catch((e) => console.log(`Cannot connect to MongoDB Atlas: ${e}`));
+
+app.listen(PORT, () => {
+  console.log(green(`Smart Notes is listening on port: ${PORT}`));
+});
