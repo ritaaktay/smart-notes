@@ -4,9 +4,9 @@ const notesController = {
   getAllNotes: async (req, res) => {
     try {
       const notes = await mongoDB.getAllNotes();
-      res.send(notes);
+      res.status(200).send(notes);
     } catch (e) {
-      res.send(`Cannot get notes: ${e}`);
+      res.status(500).send({ error: `Cannot get notes: ${e}` });
     }
   },
   addNote: async (req, res) => {

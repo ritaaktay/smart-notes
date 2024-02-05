@@ -19,14 +19,19 @@ import { NoteProps } from "../pages/Notes/Notes.types";
 const NotesList: React.FC<NoteProps> = ({ buttonBoxStyle, toggleEdit }) => {
   let [notes, setNotes] = useState([]);
   let [loading, setLoading] = useState(true);
+  let [error, setError] = useState(false);
 
   useEffect(() => {
-    fetch("/api/notes")
-      .then((res) => res.json())
-      .then((notes) => {
-        setNotes(notes);
-        setLoading(false);
-      });
+    fetch("/api/notes").then(async (res) => {
+      if (!res.ok) {
+        await res.json();
+        setError(true);
+      } else {
+        const data = await res.json();
+        setNotes(data);
+      }
+      setLoading(false);
+    });
   }, []);
 
   return (
@@ -41,13 +46,22 @@ const NotesList: React.FC<NoteProps> = ({ buttonBoxStyle, toggleEdit }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {loading ? (
+            {loading && (
               <TableRow>
                 <TableCell component="th" scope="row">
                   <CircularProgress />
                 </TableCell>
               </TableRow>
-            ) : (
+            )}
+            {error && (
+              <TableRow>
+                <TableCell component="th" scope="row">
+                  Oops! Can't get your notes right now, please try again in a
+                  moment.
+                </TableCell>
+              </TableRow>
+            )}
+            {notes.length > 0 &&
               sortNotesByDate(notes).map((note: Note) => (
                 <TableRow
                   key={note.title}
@@ -65,8 +79,7 @@ const NotesList: React.FC<NoteProps> = ({ buttonBoxStyle, toggleEdit }) => {
                     {note.date.split("T")[0]}
                   </TableCell>
                 </TableRow>
-              ))
-            )}
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
