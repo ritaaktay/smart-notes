@@ -1,25 +1,25 @@
 import mongoDB from "../services/mongoDB.js";
 
 const notesController = {
-  getAllNotes: async (req, res) => {
-    try {
-      const notes = await mongoDB.getAllNotes();
-      res.status(200).send(notes);
-    } catch (e) {
-      res.status(500).send({ error: `Cannot get notes: ${e}` });
-    }
+  getAllNotes: (req, res, next) => {
+    mongoDB
+      .getAllNotes()
+      .then((notes) => {
+        res.status(200).send(notes);
+      })
+      .catch(next);
   },
-  addNote: async (req, res) => {
-    try {
-      const id = await mongoDB.addNote({
+  addNote: (req, res, next) => {
+    mongoDB
+      .addNote({
         title: req.body.title,
         content: req.body.content,
         user: "Test",
-      });
-      res.send(`✅ Added note: ${id}`);
-    } catch (e) {
-      res.send(`❌ Failed to add note: ${e}`);
-    }
+      })
+      .then((note) => {
+        res.send(`✅ Added note: ${note.title}`);
+      })
+      .catch(next);
   },
 };
 
