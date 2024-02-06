@@ -14,9 +14,9 @@ import {
   Box,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import { NoteProps } from "../pages/Notes/Notes.types";
+import { NoteProps } from "../types";
 
-const NotesList: React.FC<NoteProps> = ({ buttonBoxStyle, toggleEdit }) => {
+const NoteList: React.FC<NoteProps> = ({ buttonBoxStyle, toggleEdit }) => {
   let [notes, setNotes] = useState([]);
   let [loading, setLoading] = useState(true);
   let [error, setError] = useState(false);
@@ -99,4 +99,4 @@ const NotesList: React.FC<NoteProps> = ({ buttonBoxStyle, toggleEdit }) => {
   );
 };
 
-export default NotesList;
+export default NoteList;

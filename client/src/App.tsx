@@ -1,21 +1,26 @@
+import { Suspense } from "react";
+import { RouterProvider } from "react-router-dom";
+import router from "./routes";
+import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
-import { Typography, Container, Box } from "@mui/material";
+import { Typography, Container, Box, CircularProgress } from "@mui/material";
 import { theme } from "./theme";
-import Notes from "./pages/Notes/Notes";
+import GithubLink from "./components/githubLink";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Container maxWidth="lg">
         <Box sx={{ my: 8 }} display="flex" flexDirection="column">
           <Typography variant="h4" align="center" sx={{ mb: 6 }}>
             Welcome to Smart Notes, your talking notebook!
           </Typography>
-          <Notes />
+          <Suspense fallback={<CircularProgress />}>
+            <RouterProvider router={router} />
+          </Suspense>
+          <GithubLink />
         </Box>
-        <Typography variant="body2" align="center">
-          {`Copyright © Rita Aktay ${new Date().getFullYear()}`}
-        </Typography>
       </Container>
     </ThemeProvider>
   );

@@ -1,8 +1,8 @@
 import { useState } from "react";
-import NoteForm from "../../components/NoteForm";
-import NotesList from "../../components/NotesList";
+import NoteForm from "../components/noteForm";
+import NoteList from "../components/noteList";
 
-const Notes = () => {
+export function Component() {
   const [edit, setEdit] = useState(false);
 
   const toggleEdit = (value: boolean): void => {
@@ -20,10 +20,10 @@ const Notes = () => {
       {edit ? (
         <NoteForm buttonBoxStyle={buttonBoxStyle} toggleEdit={toggleEdit} />
       ) : (
-        <NotesList buttonBoxStyle={buttonBoxStyle} toggleEdit={toggleEdit} />
+        <NoteList buttonBoxStyle={buttonBoxStyle} toggleEdit={toggleEdit} />
       )}
     </>
   );
-};
+}
 
-export default Notes;
+Component.displayName = "Notes";

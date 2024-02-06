@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { TextField, Button, Box, CircularProgress } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import { NoteProps } from "../pages/Notes/Notes.types";
+import { NoteProps } from "../types";
 
 type InputChangeEvent = React.ChangeEvent<HTMLInputElement>;
 
@@ -18,7 +18,6 @@ const NoteForm: React.FC<NoteProps> = ({ buttonBoxStyle, toggleEdit }) => {
     content: string;
   }) => {
     setLoading(true);
-    // POST request to /api/notes
     await fetch("/api/notes", {
       method: "POST",
       headers: {
