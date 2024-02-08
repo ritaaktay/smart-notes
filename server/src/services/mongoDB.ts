@@ -9,7 +9,7 @@ export const notes = {
   add: async ({ title, content, user }) => {
     const note = new Note({ title, content, user });
     await note.save();
-    return note.id;
+    return note;
   },
 };
 

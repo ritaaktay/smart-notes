@@ -1,5 +1,6 @@
 import AI from "openai";
 import { AIService } from "../types/index.js";
+import "dotenv/config";
 
 class OpenAIService implements AIService {
   AI: AI;

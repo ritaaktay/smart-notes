@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import "dotenv/config";
 import Note from "../models/note.model.js";
 import { MockNotes } from "../mocks/notes.mocks.js";
 
