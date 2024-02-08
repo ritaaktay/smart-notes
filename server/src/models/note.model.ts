@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { Note } from "../types/note.types.js";
+import { Note } from "../types/index.js";
 
 const noteSchema = new mongoose.Schema({
   title: {

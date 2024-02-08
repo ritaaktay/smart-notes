@@ -1,5 +1,5 @@
 import { VertexAI } from "@google-cloud/vertexai";
-import { AIService } from "../types/ai.types.js";
+import { AIService } from "../types/index.js";
 
 const projectID = "generated-wharf-412316";
 class VertexAIService implements AIService {

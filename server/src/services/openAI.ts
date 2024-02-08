@@ -1,5 +1,5 @@
 import AI from "openai";
-import { AIService } from "../types/ai.types.js";
+import { AIService } from "../types/index.js";
 
 class OpenAIService implements AIService {
   AI: AI;

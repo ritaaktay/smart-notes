@@ -1,4 +1,5 @@
 import express from "express";
+import usersController from "../controllers/users.controller.js";
 
 const router = express.Router();
 
@@ -10,9 +11,7 @@ router.get("/:id/notes", (req, res) => {
   res.send(`Get all notes for user ${req.params.id}`);
 });
 
-router.post("/", (req, res) => {
-  res.send("Add a user");
-});
+router.post("/", usersController.add);
 
 router.put("/:id", (req, res) => {
   res.send(`Update user ${req.params.id}`);

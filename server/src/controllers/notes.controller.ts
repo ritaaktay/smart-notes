@@ -1,17 +1,17 @@
-import mongoDB from "../services/mongoDB.js";
+import { notes } from "../services/mongoDB.js";
 
 const notesController = {
-  getAllNotes: (req, res, next) => {
-    mongoDB
-      .getAllNotes()
+  all: (req, res, next) => {
+    notes
+      .all()
       .then((notes) => {
         res.status(200).send(notes);
       })
       .catch(next);
   },
   addNote: (req, res, next) => {
-    mongoDB
-      .addNote({
+    notes
+      .add({
         title: req.body.title,
         content: req.body.content,
         user: "Test",

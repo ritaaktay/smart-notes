@@ -3,7 +3,7 @@ import notesController from "../controllers/notes.controller.js";
 
 const router = express.Router();
 
-router.get("/", notesController.getAllNotes);
+router.get("/", notesController.all);
 
 router.get("/:id", (req, res) => {
   res.send(`Get note ${req.params.id}`);
