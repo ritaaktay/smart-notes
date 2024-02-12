@@ -1,6 +1,7 @@
 import express from "express";
 import "dotenv/config";
 import mongoose from "mongoose";
+import cookieParser from "cookie-parser";
 import { notesRoute, usersRoute, aiRoute } from "./routes/index.js";
 import { green } from "./utils/green.js";
 import { red } from "./utils/red.js";
@@ -9,6 +10,9 @@ const app = express();
 
 // Parse incoming JSON
 app.use(express.json());
+
+// Parse cookies
+app.use(cookieParser());
 
 // Serves the React app from the build folder
 app.use(express.static("build"));
