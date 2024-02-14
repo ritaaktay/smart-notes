@@ -16,6 +16,7 @@ const usersController = {
     }
   },
   login: async (req, res, next) => {
+    // TODO authenticate the users password
     // Authenticate user
     // https://www.youtube.com/watch?v=Ud5xKCYQTjM&ab_channel=WebDevSimplified
 
@@ -29,6 +30,13 @@ const usersController = {
         user.toJSON(),
         process.env.ACCESS_TOKEN_SECRET
       );
+
+      // TODO cookies
+      // Instead of sending token as a json in response
+      // set the token in a cookie and redirect to home page
+      // res.cookie("token", accessToken, { httpOnly: true });
+      // res.redirect("/");
+
       return res.json({ accessToken });
     } catch (e) {
       return res.status(500).send(`Error generating token: ${e.message}`);
