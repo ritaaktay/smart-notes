@@ -3,8 +3,6 @@ import { TextField, Button, Box, CircularProgress } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { NoteProps } from "../types";
 
-type InputChangeEvent = React.ChangeEvent<HTMLInputElement>;
-
 const NoteForm: React.FC<NoteProps> = ({ buttonBoxStyle, toggleEdit }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -34,7 +32,7 @@ const NoteForm: React.FC<NoteProps> = ({ buttonBoxStyle, toggleEdit }) => {
         label="Title"
         variant="outlined"
         sx={{ mb: 4 }}
-        onChange={(event: InputChangeEvent) => {
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
           setTitle(event.target.value);
         }}
       />
@@ -43,7 +41,9 @@ const NoteForm: React.FC<NoteProps> = ({ buttonBoxStyle, toggleEdit }) => {
         label="Note"
         multiline
         rows={19}
-        onChange={(event: InputChangeEvent) => setContent(event.target.value)}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          setContent(event.target.value)
+        }
       />
       <Box sx={buttonBoxStyle}>
         <Button

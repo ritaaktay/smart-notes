@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { sortNotesByDate } from "../helpers/sortNotesByDate";
-import { Note } from "../../../server/src/types/note.types";
 import {
   Paper,
   Table,
@@ -26,7 +25,7 @@ const NoteList: React.FC<NoteProps> = ({ buttonBoxStyle, toggleEdit }) => {
     fetch("/api/notes").then(async (res) => {
       if (!res.ok) {
         setError(true);
-        console.log(await res.text());
+        console.log("Error fetching notes:", await res.text());
       } else {
         const data = await res.json();
         setNotes(data);
@@ -63,7 +62,7 @@ const NoteList: React.FC<NoteProps> = ({ buttonBoxStyle, toggleEdit }) => {
               </TableRow>
             )}
             {notes.length > 0 &&
-              sortNotesByDate(notes).map((note: Note) => (
+              sortNotesByDate(notes).map((note) => (
                 <TableRow
                   key={note.title}
                   sx={{
