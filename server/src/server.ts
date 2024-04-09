@@ -17,12 +17,18 @@ app.use(cookieParser());
 // Serves the React app from the build folder
 app.use(express.static("build"));
 
+const API_BASE_ROUTE = "/api";
 // Routes
-app.use(`/api/notes`, notesRoute);
-app.use(`/api/users`, usersRoute);
-app.use(`/api/ai`, aiRoute);
+app.use(`${API_BASE_ROUTE}/notes`, notesRoute);
+app.use(`${API_BASE_ROUTE}/users`, usersRoute);
+app.use(`${API_BASE_ROUTE}/ai`, aiRoute);
 
 // Error logging middleware
+app.use((err, req, res, next) => {
+  console.log(red(`${err.name} --> ${err.message}`));
+  res.status(500).send(`${err.name}: ${err.message}`);
+});
+
 app.use((err, req, res, next) => {
   console.log(red(`${err.name} --> ${err.message}`));
   res.status(500).send(`${err.name}: ${err.message}`);

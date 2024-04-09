@@ -17,6 +17,14 @@ export function Component() {
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
+  const login = async (user: { username: string; password: string }) => {
+    fetch("/api/users/login")
+      .then((res) => `${res.status}: ${res.statusText}}`)
+      .then((message) => {
+        console.log("Res for login:", message);
+      });
+  };
+
   return (
     <>
       <FormControl sx={{ m: 1 }} variant="outlined">
@@ -58,6 +66,7 @@ export function Component() {
         color="primary"
         onClick={() => {
           console.log("Logging in:", username, password);
+          login({ username, password });
         }}
       >
         <Login />
